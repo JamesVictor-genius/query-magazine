@@ -1,0 +1,145 @@
+Creative thesis directions (tailored to your interests)
+Given your background in backend, blockchain, and systems, you can go beyond pure algorithm design and emphasize architecture, efficiency, and personalization. Below are several directions; each can be turned into a full thesis proposal.
+
+1. LLM‑guided adaptive query extension + personalized ranking
+Idea: Build a retrieval pipeline where an LLM dynamically expands and reformulates user queries based on their profile and session, then a hybrid index (lexical + vector) ranks results with personalized signals.
+
+Architecture:
+
+Stage 1: Retrieve top‑k candidates using a fast BM25 or SPLADE index.
+
+Stage 2: An LLM generates expanded queries and synonyms conditioned on user profile (interests, past queries, click history).
+
+Stage 3: A re‑ranker uses both original and expanded queries plus user features to personalize ranking (e.g., a transformer‑based LTR model).
+
+Research angles:
+
+How to control LLM hallucination in query expansion (e.g., by grounding expansions on pseudo‑relevant documents).
+
+How much personalization in expansion helps compared to personalization only in ranking.
+
+Ablation on cold‑start vs heavy‑history users.
+
+This links directly to recent PLM‑based query expansion work, but your twist is personalization + hybrid indexing.
+
+2. Unified index for multi‑modal personalized search (text, code, logs)
+Idea: Design and evaluate an index that supports mixed query types (natural‑language, structured filters, code snippets) and personalized scoring in one structure.
+
+Scenario: Developer search in a code+docs corpus, or ops engineer searching logs and knowledge base.
+
+Index design:
+
+A base inverted index for lexical terms.
+
+A vector index (e.g., HNSW or IVF) for embeddings of text, code, and user profiles.
+
+Optional time‑series / columnar index for recency and structured filters (e.g., log level, service name).
+
+Research questions:
+
+How to balance latency vs quality when combining multiple index lookups.
+
+Personalized scoring that considers user role (developer vs ops), typical query patterns and feedback.
+
+This is a good fit for your backend/server skillset: you can implement the engine, benchmark on realistic workloads, and show performance tradeoffs.
+
+3. Personalized recommendation integrated into query processing (session‑centric)
+Idea: Treat search and recommendation as one loop: every query updates the user state, and the system decides whether to show results, suggestions, or recommended content.
+
+Components:
+
+Query intent classifier (navigational vs informational vs transactional).
+
+Session‑level user state (short‑term) + profile (long‑term).
+
+Policy: choose between search results, query reformulations, or recommended items (documents, products, tutorials).
+
+Research angles:
+
+Evaluate whether “mixed” interfaces (search + recommend + suggest queries) perform better than pure search.
+
+Study how personalized query suggestions affect downstream recommendation quality (and vice versa).
+
+You can prototype a web UI and perform online or simulated user studies.
+
+4. Privacy‑preserving personalized query processing (including federated or blockchain‑backed logs)
+Idea: With your blockchain interest, you can explore storing or learning from user interactions while preserving privacy.
+
+Design choices:
+
+Use federated learning for personalized ranking, where the model updates on the client side and only aggregated updates are sent server‑side.
+
+Explore a blockchain‑based audit trail of query/interaction logs where user data is pseudonymous but verifiable.
+
+Research questions:
+
+Trade‑off between personalization quality and strict privacy constraints.
+
+Efficient index updates when user‑level data cannot be centrally stored.
+
+This brings a systems and security angle that many IR theses lack.
+
+5. Explainable personalized retrieval and recommendation
+Idea: Combine explainable recommendation techniques with retrieval: every result and suggestion comes with human‑readable explanations tuned to the user.
+
+Method:
+
+Use attention weights, feature contributions, or explicit “reason tokens” to generate explanations of ranking decisions.
+
+Compare generic vs personalized explanations (e.g., “Recommended because you often read about Rust performance” versus “Popular in your field”).
+
+Research angles:
+
+Measure whether better explanations improve trust and click‑through.
+
+Evaluate explanation quality via user studies and automated metrics (faithfulness, consistency).
+
+You can reuse ideas from explainable recommendation and adapt them to query processing pipelines.
+
+6. Cross‑lingual personalized search (English–Chinese)
+Idea: Target English/Chinese bilingual users and design cross‑lingual personalized retrieval, especially relevant given your need to reference both language theses.
+
+Architecture:
+
+Use a multilingual embedding model (e.g., mBERT, LaBSE) or recent multilingual PLMs.
+
+Unified index storing bilingual embeddings, plus a mapping from each user’s language preference and proficiency.
+
+Research questions:
+
+How to personalize cross‑lingual search—e.g., prefer English technical papers but Chinese tutorials for a given user.
+
+Evaluate cross‑lingual query expansion versus monolingual expansion on mixed‑language corpora.
+
+This gives you a natural reason to read and cite both English and Chinese theses.
+
+Concrete steps to design your topic
+You can use this stepwise approach to converge on a final thesis topic.
+
+Decide core focus:
+
+Strong IR focus: choose topics 1, 2, or 6.
+
+Strong recommender focus: choose topics 3 or 5.
+
+Strong security/systems focus: choose topic 4.
+
+Collect 20–30 theses/papers:
+
+Use OATD, Google Scholar, CNKI, and a couple of university repositories with queries like “query expansion,” “personalized search,” “个性化推荐,” “查询处理,” filtered to 2020–2025.
+
+Build a small taxonomy:
+
+Cluster prior theses by theme (expansion, indexing, personalization, explainability, privacy).
+
+Identify a gap where two themes are not yet well integrated (e.g., PLM‑based expansion + explainable personalization).
+
+Draft a provisional title, e.g.:
+
+“Adaptive LLM‑Guided Query Expansion for Personalized Cross‑Lingual Search”
+
+“Unified Hybrid Indexing and Session‑Aware Recommendation for Developer‑Centric Search”
+
+“Privacy‑Preserving Personalized Query Processing with Federated Learning and Auditable Logs”
+
+If you tell me what discipline your master’s program is formally in (e.g., Computer Science / Information Retrieval / Data Science) and any constraints from your advisor (pure theory vs system implementation), I can help you narrow this to 1–2 highly concrete thesis titles, chapter structure, and evaluation plan.
